@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FlappyBirdAssets/background-day.png" type="Texture" id=1]
+[ext_resource path="res://FlappyBirdAssets/base.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "MovimentoFundo"
+length = 3.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BAckgorundImage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -220, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Chao:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -220, 0 ) ]
+}
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="BAckgorundImage" type="ParallaxLayer" parent="."]
+position = Vector2( -119.652, 0 )
+motion_mirroring = Vector2( 220, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="BAckgorundImage"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 220, 400 )
+texture = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chao" type="ParallaxLayer" parent="."]
+position = Vector2( -119.652, 0 )
+motion_mirroring = Vector2( 220, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Chao"]
+margin_top = 320.0
+margin_right = 196.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 220, 80 )
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "MovimentoFundo"
+anims/MovimentoFundo = SubResource( 1 )
