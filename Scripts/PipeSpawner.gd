@@ -13,3 +13,5 @@ func spaw_pipe():
 # Foi inserirdo na cena um objeto chamado Time, depois selecionou o Timer e foi no guia Nó e add a função timeout()
 func _on_Timer_timeout():
 	spaw_pipe()
+
+
