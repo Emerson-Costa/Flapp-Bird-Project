@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Pipe.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 12.13, 53.7124 )
+extents = Vector2( 9.61667, 53.7124 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 23.8317, 160.614 )
@@ -17,12 +17,16 @@ position = Vector2( 258.996, -20.1815 )
 script = ExtResource( 2 )
 
 [node name="IncreaseScoreArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IncreaseScoreArea"]
 position = Vector2( 38.5814, 214.811 )
 shape = SubResource( 1 )
 
 [node name="TopPipe" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 4
 
 [node name="Sprite" type="Sprite" parent="TopPipe"]
 texture = ExtResource( 1 )
@@ -33,6 +37,8 @@ shape = SubResource( 2 )
 
 [node name="BottomPipe" type="StaticBody2D" parent="."]
 position = Vector2( 0, 430 )
+collision_layer = 2
+collision_mask = 4
 
 [node name="Sprite" type="Sprite" parent="BottomPipe"]
 texture = ExtResource( 1 )

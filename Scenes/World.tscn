@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/PipeSpawner.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Bird.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Interface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 110.712, 11.5326 )
 
 [node name="World" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Background" parent="." instance=ExtResource( 1 )]
 
@@ -18,9 +23,27 @@ wait_time = 2.0
 autostart = true
 
 [node name="Bird" parent="." instance=ExtResource( 3 )]
-position = Vector2( 110, 200 )
+position = Vector2( 108.502, 200 )
 
 [node name="Interface" parent="." instance=ExtResource( 4 )]
+
+[node name="ScenarioCollisions" type="Node2D" parent="."]
+
+[node name="TopCollision" type="StaticBody2D" parent="ScenarioCollisions"]
+position = Vector2( 0, -9.52441 )
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScenarioCollisions/TopCollision"]
+position = Vector2( 110.002, 0.594604 )
+shape = SubResource( 1 )
+
+[node name="BottonCollision" type="StaticBody2D" parent="ScenarioCollisions"]
+position = Vector2( 0, 330.563 )
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScenarioCollisions/BottonCollision"]
+position = Vector2( 110.002, 0.594604 )
+shape = SubResource( 1 )
 
 [connection signal="timeout" from="PipeSpawner/Timer" to="PipeSpawner" method="_on_Timer_timeout"]
 [connection signal="increase_score" from="Bird" to="Interface" method="increase_score"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://FlappyBirdAssets/yellowbird-midflap.png" type="Texture" id=1]
 [ext_resource path="res://FlappyBirdAssets/yellowbird-upflap.png" type="Texture" id=2]
 [ext_resource path="res://FlappyBirdAssets/yellowbird-downflap.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Bird.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/BirdDetectCollisionArea2D.gd" type="Script" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,26 +15,35 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 11.6841
+radius = 12.4905
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 12.3282
 
 [node name="Bird" type="KinematicBody2D"]
 position = Vector2( 0.561234, 0.280617 )
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 1
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="DetectCollisionArea2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectCollisionArea2D"]
-visible = false
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 one_way_collision = true
+
+[connection signal="body_entered" from="DetectCollisionArea2D" to="DetectCollisionArea2D" method="_on_DetectCollisionArea2D_body_entered"]
+[connection signal="kill_bird" from="DetectCollisionArea2D" to="." method="on_kill_bird"]

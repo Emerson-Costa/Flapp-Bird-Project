@@ -1,7 +1,11 @@
 extends KinematicBody2D
 
-# criação de um sinal para chamar metodos de um outro script
+# Sinal para incrementação do Score
 signal increase_score
+
+# Sinal para Acabar como jogo
+signal game_over
+
 
 # export deixa a variavel visível no painel de objetos
 export var gravity = 400
@@ -27,3 +31,7 @@ func increase_score():
 	emit_signal("increase_score", score)
 	
 
+
+func on_kill_bird():
+	set_physics_process(false)
+	emit_signal("game_over")
